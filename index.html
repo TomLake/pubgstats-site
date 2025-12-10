@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stats Tracker for PUBG – The #1 Stats Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Use Inter for a clean, modern typeface -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Colour palette for the dark, orange and purple theme */
+    :root {
+      --color-bg: #0d0d0d;
+      --color-primary: #e3982b; /* orange accent */
+      --color-secondary: #8654a8; /* purple accent */
+      --color-text: #f5f5f5;
+      --color-muted: #999;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Header styles */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 2rem 1rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    header img {
+      width: 80px;
+      height: auto;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 1.5rem;
+    }
+    nav li {
+      margin: 0;
+    }
+
+    /* Hero section */
+    .hero {
+      text-align: center;
+      padding: 3rem 1rem;
+      background: linear-gradient(135deg, var(--color-bg), #151515);
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-top: 0;
+      color: var(--color-primary);
+    }
+    .hero p {
+      max-width: 700px;
+      margin: 1rem auto 2rem;
+    }
+    .hero .cta {
+      display: inline-block;
+      background-color: var(--color-secondary);
+      color: var(--color-text);
+      padding: 0.8rem 1.5rem;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: background-color 0.2s ease;
+    }
+    .hero .cta:hover {
+      background-color: #9f6fc3;
+    }
+
+    /* Features section */
+    .features {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem 1rem;
+    }
+    .features h2 {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-size: 2rem;
+      color: var(--color-primary);
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .feature-item {
+      background-color: #1a1a1a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    }
+    .feature-item img {
+      max-width: 100%;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    .feature-item h3 {
+      color: var(--color-secondary);
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+
+    /* Pro / why section */
+    .pro-section {
+      background-color: #141414;
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .pro-section h2 {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-size: 2rem;
+    }
+    .pro-section p {
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Footer styles */
+    footer {
+      background-color: #0a0a0a;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+    footer a {
+      color: var(--color-secondary);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <!-- The app icon serves as a brand anchor in the header -->
+      <img src="assets/icon.png" alt="Stats Tracker Logo">
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Stats&nbsp;Tracker&nbsp;for&nbsp;PUBG</h1>
+    <p>The #1 Stats Tracker for PUBG PC &amp; Console. Dive deep into your performance with detailed stats, immersive 2D replays, combat logs, mastery insights, match histories and more.</p>
+    <!-- Primary call to action takes visitors directly to the App Store listing -->
+    <a href="https://apps.apple.com/gb/app/stats-tracker-for-pubg/id1397103813" class="cta">Download on the App Store</a>
+  </section>
+
+  <section class="features">
+    <h2>Key Features</h2>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <img src="assets/matches.jpeg" alt="Recent matches screen">
+        <h3>Career &amp; Match Stats</h3>
+        <p>Access detailed statistics for every match and season: wins, K/D ratio, damage, time survived, map breakdowns and more.</p>
+      </div>
+      <div class="feature-item">
+        <img src="assets/kills.jpeg" alt="Kills and damage screen">
+        <h3>Kills &amp; Damage Analysis</h3>
+        <p>Visualise your kills, damage and survival over time with clear charts and damage logs. Compare yourself to squad mates and rivals.</p>
+      </div>
+      <div class="feature-item">
+        <img src="assets/map.jpeg" alt="Advanced map replay screen">
+        <h3>2D Replays &amp; Map Path</h3>
+        <p>Replay every game in a tactical 2D map. See your path, kills, loot drops and discover where you can improve your strategy.</p>
+      </div>
+      <div class="feature-item">
+        <img src="assets/proplus.jpeg" alt="Pro plus features screen">
+        <h3>Pro Subscription</h3>
+        <p>Unlock advanced match search, live loot timeline sync, pinch‑to‑zoom replays, colour‑coded teams and a Pro badge with our optional subscription.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pro-section">
+    <h2>Why Stats&nbsp;Tracker?</h2>
+    <p>Whether you’re an Esports competitor, a ranked grinder or a casual duo, Stats&nbsp;Tracker gives you the insights you need to climb the leaderboard. Track your progress, understand your strengths and weaknesses, and share your achievements with friends.</p>
+    <a href="https://apps.apple.com/gb/app/stats-tracker-for-pubg/id1397103813" class="cta">Get&nbsp;Started&nbsp;Now</a>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Stats Tracker for PUBG. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
+</body>
+</html>
