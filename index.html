@@ -8,6 +8,11 @@
   <title>PUBG Stats Tracker — Match Replays, Ranked, Mastery</title>
   <meta name="description" content="Track lifetime & ranked stats, match history, 2D replays, weapon mastery and friends — built for PUBG players." />
 
+  <!-- App icon / favicons -->
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <meta name="theme-color" content="#070707" />
+
   <!-- Open Graph -->
   <meta property="og:title" content="PUBG Stats Tracker" />
   <meta property="og:description" content="Lifetime & ranked stats, match history, 2D replays, mastery and friends — built for PUBG players." />
@@ -65,14 +70,15 @@
       gap: 12px;
       min-width: 220px;
     }
-    .logo{
-      width: 38px; height: 38px;
+    .app-icon{
+      width: 38px;
+      height: 38px;
       border-radius: 12px;
-      background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.45), transparent 60%),
-        linear-gradient(160deg, rgba(246,161,26,0.95), rgba(246,161,26,0.45));
-      box-shadow: 0 10px 30px rgba(246,161,26,0.18);
-      border: 1px solid rgba(255,255,255,0.12);
+      display:block;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 10px 30px rgba(246,161,26,0.10);
+      object-fit: cover;
     }
     .brand h1{
       margin:0;
@@ -121,26 +127,18 @@
     .btn.primary:hover{ background: linear-gradient(180deg, rgba(255,180,58,0.98), rgba(246,161,26,0.68)); }
 
     /* App Store badge */
-    .appstore-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-    }
-    .appstore-link:hover{
-      transform: translateY(-1px);
-      background: rgba(255,255,255,0.08);
-      border-color: rgba(255,255,255,0.18);
-    }
-    .appstore-badge{
-      height: 40px;
-      width: auto;
-      display:block;
-    }
+.appstore-link{
+  display: inline-block;
+  line-height: 0;
+}
+.appstore-link:hover{
+  transform: none;
+}
+.appstore-badge{
+  height: 40px;
+  width: auto;
+  display: block;
+}
 
     /* Hero */
     .hero{
@@ -489,7 +487,7 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img class="app-icon" src="assets/icon.png" alt="Stats Tracker for PUBG app icon" />
         <div>
           <h1>PUBG Stats Tracker</h1>
           <p>Match history • 2D replays • Ranked • Mastery</p>
@@ -497,7 +495,6 @@
       </div>
 
       <nav>
-        <!-- Official App Store badge -->
         <a class="appstore-link" href="https://apps.apple.com/us/app/stats-tracker-for-pubg/id1397103813" target="_blank" rel="noopener">
           <img
             class="appstore-badge"
