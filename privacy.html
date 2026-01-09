@@ -1,169 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy – Stats Tracker for PUBG</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Privacy Policy — Stats Tracker for PUBG</title>
+
   <style>
-    :root {
-      --color-bg: #0d0d0d;
-      --color-primary: #e3982b;
-      --color-secondary: #8654a8;
-      --color-text: #f5f5f5;
-      --color-muted: #999;
+    :root{
+      --bg: #070707;
+      --text: rgba(255,255,255,0.90);
+      --muted: rgba(255,255,255,0.66);
+      --line: rgba(255,255,255,0.10);
+      --accent: #F6A11A;
+      --accent2: #ffb43a;
+      --shadow: 0 20px 80px rgba(0,0,0,0.6);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 980px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.6;
+
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      background:
+        radial-gradient(1200px 700px at 50% -150px, rgba(246,161,26,0.22), transparent 60%),
+        radial-gradient(800px 500px at 85% 20%, rgba(246,161,26,0.14), transparent 60%),
+        var(--bg);
+      color: var(--text);
     }
-    a {
-      color: var(--color-primary);
-      text-decoration: none;
+
+    a{ color: var(--accent2); text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 28px 18px 64px; }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 0 18px;
     }
-    a:hover {
-      text-decoration: underline;
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
     }
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 2rem 1rem;
-      max-width: 1100px;
-      margin: 0 auto;
+    .logo{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.45), transparent 60%),
+        linear-gradient(160deg, rgba(246,161,26,0.95), rgba(246,161,26,0.45));
+      box-shadow: 0 10px 30px rgba(246,161,26,0.18);
+      border: 1px solid rgba(255,255,255,0.12);
     }
-    header img {
-      width: 70px;
-      height: auto;
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      color: rgba(255,255,255,0.85);
     }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 1.5rem;
+    .brand p{
+      margin:0;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
     }
-    main.policy {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1rem 4rem;
+
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
     }
-    main.policy h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-      color: var(--color-primary);
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      gap: 8px;
+      cursor:pointer;
+      user-select:none;
     }
-    main.policy h2 {
-      font-size: 1.5rem;
-      margin-top: 2rem;
-      margin-bottom: 0.5rem;
-      color: var(--color-secondary);
+    .btn:hover{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); text-decoration:none; }
+
+    .appstore-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
     }
-    main.policy h3 {
-      font-size: 1.2rem;
-      margin-top: 1.5rem;
-      margin-bottom: 0.3rem;
-      color: var(--color-secondary);
+    .appstore-link:hover{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); text-decoration:none; }
+    .appstore-badge{ height: 40px; width:auto; display:block; }
+
+    .card{
+      margin-top: 12px;
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      padding: 22px 18px;
     }
-    main.policy ul {
-      padding-left: 1.2rem;
+
+    h2{
+      font-family: var(--mono);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-size: 14px;
+      margin: 0 0 10px;
+      color: rgba(255,255,255,0.84);
     }
-    footer {
-      background-color: #0a0a0a;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--color-muted);
+
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+      margin: 0 0 18px;
     }
-    footer a {
-      color: var(--color-secondary);
+
+    .policy h3{
+      margin-top: 22px;
+      margin-bottom: 8px;
+      color: rgba(255,255,255,0.92);
+      font-size: 16px;
+    }
+    .policy p, .policy li{
+      color: rgba(255,255,255,0.80);
+      line-height: 1.65;
+      font-size: 14px;
+    }
+    .policy ul{
+      padding-left: 18px;
+    }
+
+    footer{
+      margin-top: 18px;
+      padding: 16px 6px 6px;
+      color: rgba(255,255,255,0.52);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align:center;
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">
-      <img src="assets/icon.png" alt="Stats Tracker Logo">
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>PUBG Stats Tracker</h1>
+          <p>Privacy Policy</p>
+        </div>
+      </div>
+
+      <nav>
+        <a class="btn" href="index.html">Home</a>
+        <a class="appstore-link" href="https://apps.apple.com/us/app/stats-tracker-for-pubg/id1397103813" target="_blank" rel="noopener">
+          <img
+            class="appstore-badge"
+            src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83"
+            alt="Download on the App Store"
+            loading="eager"
+            referrerpolicy="no-referrer"
+          />
+        </a>
+      </nav>
+    </header>
+
+    <div class="card">
+      <h2>Privacy Policy</h2>
+      <p class="meta"><em>Last updated: 10 December 2025</em></p>
+
+      <div class="policy">
+        <h3>1. Introduction</h3>
+        <p>This Privacy Policy explains how Stats Tracker for PUBG (the “App”, “we” or “us”) collects, uses and safeguards your information when you use our mobile application and related services. We respect your privacy and are committed to protecting it. This policy describes our practices so that you can make an informed decision. By using the App, you agree to the collection and use of information in accordance with this policy.</p>
+
+        <h3>2. Information We Collect</h3>
+        <p>Stats Tracker for PUBG is designed to provide you with detailed game statistics without requiring unnecessary personal data. We only collect:</p>
+        <ul>
+          <li><strong>In-game name and account ID:</strong> The character name and unique account identifier you enter when you set up the App.</li>
+          <li><strong>Anonymous install identifier:</strong> A randomly generated identifier assigned to your device for subscription management and basic analytics.</li>
+        </ul>
+        <p>We do <strong>not</strong> collect crash logs, health data, contacts or any other personal identifiers. Payments and subscriptions are processed through Apple’s In-App Purchase system and RevenueCat; we do not see or store your payment details.</p>
+
+        <h3>How We Collect Data</h3>
+        <p>Your in-game name and account ID are collected when you voluntarily enter them into the App. The install identifier is generated automatically when you first launch the App. Subscription status is determined via Apple and RevenueCat. Our backend leverages Firebase to retrieve and store game data from the official PUBG APIs.</p>
+
+        <h3>How We Use Your Data</h3>
+        <p>We use the information we collect for the following purposes:</p>
+        <ul>
+          <li>To fetch and display your PUBG statistics, match histories and other insights.</li>
+          <li>To manage your Pro subscription and enable premium features such as 2D replays, live loot timelines and advanced search.</li>
+          <li>To improve the App’s functionality, fix bugs and enhance the user experience.</li>
+          <li>To respond to your support requests or contact you about critical updates.</li>
+        </ul>
+        <p>We do not sell or share your personal data with advertisers or other third parties for marketing purposes.</p>
+
+        <h3>3. Third-Party Services</h3>
+        <p>To deliver the App’s features, we rely on the following third-party services:</p>
+        <ul>
+          <li><strong>PUBG official APIs:</strong> We query public APIs to retrieve match and player statistics based on your account ID.</li>
+          <li><strong>Apple In-App Purchase:</strong> Subscriptions are handled through Apple’s secure payment system. We do not process payment information directly.</li>
+          <li><strong>RevenueCat:</strong> We use RevenueCat to manage subscription status. RevenueCat stores an anonymous identifier and purchase receipt to verify your subscription.</li>
+          <li><strong>Firebase:</strong> Our backend uses Firebase to store and process game data. Firebase may log generic device information (such as operating system and version) necessary for service performance and security.</li>
+          <li><strong>Cloudflare Pages:</strong> Our marketing site and privacy policy are hosted on Cloudflare Pages. Cloudflare automatically collects logs and analytics for security and reliability purposes.</li>
+        </ul>
+        <p>Each third-party provider has its own privacy policy, and we only share the minimum information necessary for them to perform their services.</p>
+
+        <h3>4. Data Retention</h3>
+        <p>We retain your in-game name and account ID for as long as you maintain an account with Stats Tracker. Anonymous install identifiers are retained only as long as necessary to manage subscriptions and generate aggregated analytics. If you request deletion of your data or uninstall the App, we will remove your information from our systems within a reasonable period, except where we are legally required to keep it.</p>
+
+        <h3>5. Your Rights</h3>
+        <p>If you are located in the European Union or other jurisdictions with data protection laws, you may have certain rights regarding your personal data, including the right to:</p>
+        <ul>
+          <li>Access the information we hold about you.</li>
+          <li>Request correction of inaccurate or incomplete data.</li>
+          <li>Request deletion of your data.</li>
+          <li>Object to or restrict the processing of your data.</li>
+          <li>Data portability, where applicable.</li>
+        </ul>
+        <p>To exercise any of these rights, please contact us at <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>. We may ask you to verify your identity before complying with your request. You also have the right to lodge a complaint with your local data protection authority.</p>
+
+        <h3>6. Security</h3>
+        <p>We implement reasonable administrative, technical and physical safeguards designed to protect your data. However, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security, but we endeavour to protect your information to the best of our ability.</p>
+
+        <h3>7. Children’s Privacy</h3>
+        <p>The App is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will take steps to delete such information as soon as possible.</p>
+
+        <h3>8. Changes to This Policy</h3>
+        <p>We may update this Privacy Policy from time to time to reflect changes in the law, our data practices or the App’s functionality. When we make material changes, we will notify you by updating the “Last updated” date at the top of this page and, if appropriate, via a notice within the App. Your continued use of the App after the effective date of an updated policy constitutes acceptance of the changes.</p>
+
+        <h3>9. Contact Us</h3>
+        <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>.</p>
+      </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main class="policy">
-    <h1>Privacy Policy</h1>
-    <p><em>Last updated: 10 December 2025</em></p>
 
-    <h2>1. Introduction</h2>
-    <p>This Privacy Policy explains how Stats&nbsp;Tracker&nbsp;for&nbsp;PUBG (the “App”, “we” or “us”) collects, uses and safeguards your information when you use our mobile application and related services. We respect your privacy and are committed to protecting it. This policy describes our practices so that you can make an informed decision. By using the App, you agree to the collection and use of information in accordance with this policy.</p>
-
-    <h2>2. Information We Collect</h2>
-    <p>Stats&nbsp;Tracker&nbsp;for&nbsp;PUBG is designed to provide you with detailed game statistics without requiring unnecessary personal data. We only collect:</p>
-    <ul>
-      <li><strong>In‑game name and account ID:</strong> The character name and unique account identifier you enter when you set up the App.</li>
-      <li><strong>Anonymous install identifier:</strong> A randomly generated identifier assigned to your device for subscription management and basic analytics.</li>
-    </ul>
-    <p>We do <strong>not</strong> collect crash logs, health data, contacts or any other personal identifiers. Payments and subscriptions are processed through Apple’s In‑App Purchase system and RevenueCat; we do not see or store your payment details.</p>
-
-    <h3>How We Collect Data</h3>
-    <p>Your in‑game name and account ID are collected when you voluntarily enter them into the App. The install identifier is generated automatically when you first launch the App. Subscription status is determined via Apple and RevenueCat. Our backend leverages Firebase to retrieve and store game data from the official PUBG APIs.</p>
-
-    <h3>How We Use Your Data</h3>
-    <p>We use the information we collect for the following purposes:</p>
-    <ul>
-      <li>To fetch and display your PUBG statistics, match histories and other insights.</li>
-      <li>To manage your Pro subscription and enable premium features such as 2D replays, live loot timelines and advanced search.</li>
-      <li>To improve the App’s functionality, fix bugs and enhance the user experience.</li>
-      <li>To respond to your support requests or contact you about critical updates.</li>
-    </ul>
-    <p>We do not sell or share your personal data with advertisers or other third parties for marketing purposes.</p>
-
-    <h2>3. Third‑Party Services</h2>
-    <p>To deliver the App’s features, we rely on the following third‑party services:</p>
-    <ul>
-      <li><strong>PUBG official APIs:</strong> We query public APIs to retrieve match and player statistics based on your account ID.</li>
-      <li><strong>Apple In‑App Purchase:</strong> Subscriptions are handled through Apple’s secure payment system. We do not process payment information directly.</li>
-      <li><strong>RevenueCat:</strong> We use RevenueCat to manage subscription status. RevenueCat stores an anonymous identifier and purchase receipt to verify your subscription.</li>
-      <li><strong>Firebase:</strong> Our backend uses Firebase to store and process game data. Firebase may log generic device information (such as operating system and version) necessary for service performance and security.</li>
-      <li><strong>Cloudflare Pages:</strong> Our marketing site and privacy policy are hosted on Cloudflare Pages. Cloudflare automatically collects logs and analytics for security and reliability purposes.</li>
-    </ul>
-    <p>Each third‑party provider has its own privacy policy, and we only share the minimum information necessary for them to perform their services.</p>
-
-    <h2>4. Data Retention</h2>
-    <p>We retain your in‑game name and account ID for as long as you maintain an account with Stats&nbsp;Tracker. Anonymous install identifiers are retained only as long as necessary to manage subscriptions and generate aggregated analytics. If you request deletion of your data or uninstall the App, we will remove your information from our systems within a reasonable period, except where we are legally required to keep it.</p>
-
-    <h2>5. Your Rights</h2>
-    <p>If you are located in the European Union or other jurisdictions with data protection laws, you may have certain rights regarding your personal data, including the right to:</p>
-    <ul>
-      <li>Access the information we hold about you.</li>
-      <li>Request correction of inaccurate or incomplete data.</li>
-      <li>Request deletion of your data.</li>
-      <li>Object to or restrict the processing of your data.</li>
-      <li>Data portability, where applicable.</li>
-    </ul>
-    <p>To exercise any of these rights, please contact us at <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>. We may ask you to verify your identity before complying with your request. You also have the right to lodge a complaint with your local data protection authority.</p>
-
-    <h2>6. Security</h2>
-    <p>We implement reasonable administrative, technical and physical safeguards designed to protect your data. However, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security, but we endeavour to protect your information to the best of our ability.</p>
-
-    <h2>7. Children’s Privacy</h2>
-    <p>The App is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will take steps to delete such information as soon as possible.</p>
-
-    <h2>8. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time to reflect changes in the law, our data practices or the App’s functionality. When we make material changes, we will notify you by updating the “Last updated” date at the top of this page and, if appropriate, via a notice within the App. Your continued use of the App after the effective date of an updated policy constitutes acceptance of the changes.</p>
-
-    <h2>9. Contact Us</h2>
-    <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>.</p>
-  </main>
-  <footer>
-    <p>&copy; 2025 Stats&nbsp;Tracker for PUBG. All rights reserved. <a href="index.html">Back to Home</a></p>
-  </footer>
+    <footer>
+      <p>&copy; 2025 Stats Tracker for PUBG. <a href="index.html">Back to Home</a></p>
+    </footer>
+  </div>
 </body>
 </html>
