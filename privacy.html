@@ -4,7 +4,13 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
+
   <title>Privacy Policy — Stats Tracker for PUBG</title>
+  <meta name="description" content="Privacy Policy for Stats Tracker for PUBG" />
+
+  <link rel="icon" type="image/png" href="assets/icon.png" />
+  <link rel="apple-touch-icon" href="assets/icon.png" />
+  <meta name="theme-color" content="#070707" />
 
   <style>
     :root{
@@ -44,6 +50,7 @@
       justify-content:space-between;
       gap: 12px;
       padding: 10px 0 18px;
+      flex-wrap: wrap;
     }
 
     .brand{
@@ -51,14 +58,14 @@
       align-items:center;
       gap: 12px;
     }
-    .logo{
-      width: 38px; height: 38px;
+    .app-icon{
+      width: 38px;
+      height: 38px;
       border-radius: 12px;
-      background:
-        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.45), transparent 60%),
-        linear-gradient(160deg, rgba(246,161,26,0.95), rgba(246,161,26,0.45));
-      box-shadow: 0 10px 30px rgba(246,161,26,0.18);
-      border: 1px solid rgba(255,255,255,0.12);
+      display:block;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      object-fit: cover;
     }
     .brand h1{
       margin:0;
@@ -100,16 +107,7 @@
     }
     .btn:hover{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); text-decoration:none; }
 
-    .appstore-link{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,0.14);
-      background: rgba(255,255,255,0.06);
-    }
-    .appstore-link:hover{ background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); text-decoration:none; }
+    .appstore-link{ display:inline-block; line-height:0; }
     .appstore-badge{ height: 40px; width:auto; display:block; }
 
     .card{
@@ -137,7 +135,7 @@
     }
 
     .policy h3{
-      margin-top: 22px;
+      margin-top: 18px;
       margin-bottom: 8px;
       color: rgba(255,255,255,0.92);
       font-size: 16px;
@@ -147,9 +145,8 @@
       line-height: 1.65;
       font-size: 14px;
     }
-    .policy ul{
-      padding-left: 18px;
-    }
+    .policy ul{ padding-left: 18px; }
+    code{ font-family: var(--mono); color: rgba(255,255,255,0.85); }
 
     footer{
       margin-top: 18px;
@@ -166,7 +163,7 @@
   <div class="wrap">
     <header>
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img class="app-icon" src="assets/icon.png" alt="Stats Tracker for PUBG app icon" />
         <div>
           <h1>PUBG Stats Tracker</h1>
           <p>Privacy Policy</p>
@@ -189,74 +186,67 @@
 
     <div class="card">
       <h2>Privacy Policy</h2>
-      <p class="meta"><em>Last updated: 10 December 2025</em></p>
+      <p class="meta"><em>Last updated: 9 January 2026</em></p>
 
       <div class="policy">
-        <h3>1. Introduction</h3>
-        <p>This Privacy Policy explains how Stats Tracker for PUBG (the “App”, “we” or “us”) collects, uses and safeguards your information when you use our mobile application and related services. We respect your privacy and are committed to protecting it. This policy describes our practices so that you can make an informed decision. By using the App, you agree to the collection and use of information in accordance with this policy.</p>
+        <h3>Summary</h3>
+        <p>
+          We don’t run ads and we don’t do ad tracking. We only store what we need to show your PUBG stats and manage subscriptions.
+        </p>
 
-        <h3>2. Information We Collect</h3>
-        <p>Stats Tracker for PUBG is designed to provide you with detailed game statistics without requiring unnecessary personal data. We only collect:</p>
+        <h3>What we collect</h3>
         <ul>
-          <li><strong>In-game name and account ID:</strong> The character name and unique account identifier you enter when you set up the App.</li>
-          <li><strong>Anonymous install identifier:</strong> A randomly generated identifier assigned to your device for subscription management and basic analytics.</li>
+          <li><strong>PUBG account ID</strong> and <strong>PUBG in-game name</strong> (so we can look up and display your stats).</li>
+          <li><strong>Custom device install ID</strong> (a random identifier used for subscription status and basic app operations).</li>
         </ul>
-        <p>We do <strong>not</strong> collect crash logs, health data, contacts or any other personal identifiers. Payments and subscriptions are processed through Apple’s In-App Purchase system and RevenueCat; we do not see or store your payment details.</p>
 
-        <h3>How We Collect Data</h3>
-        <p>Your in-game name and account ID are collected when you voluntarily enter them into the App. The install identifier is generated automatically when you first launch the App. Subscription status is determined via Apple and RevenueCat. Our backend leverages Firebase to retrieve and store game data from the official PUBG APIs.</p>
-
-        <h3>How We Use Your Data</h3>
-        <p>We use the information we collect for the following purposes:</p>
+        <h3>What we don’t collect</h3>
         <ul>
-          <li>To fetch and display your PUBG statistics, match histories and other insights.</li>
-          <li>To manage your Pro subscription and enable premium features such as 2D replays, live loot timelines and advanced search.</li>
-          <li>To improve the App’s functionality, fix bugs and enhance the user experience.</li>
-          <li>To respond to your support requests or contact you about critical updates.</li>
+          <li>No advertising ID / no ad profiling.</li>
+          <li>No precise location, contacts, photos, or payment card details.</li>
         </ul>
-        <p>We do not sell or share your personal data with advertisers or other third parties for marketing purposes.</p>
 
-        <h3>3. Third-Party Services</h3>
-        <p>To deliver the App’s features, we rely on the following third-party services:</p>
+        <h3>How we use this information</h3>
         <ul>
-          <li><strong>PUBG official APIs:</strong> We query public APIs to retrieve match and player statistics based on your account ID.</li>
-          <li><strong>Apple In-App Purchase:</strong> Subscriptions are handled through Apple’s secure payment system. We do not process payment information directly.</li>
-          <li><strong>RevenueCat:</strong> We use RevenueCat to manage subscription status. RevenueCat stores an anonymous identifier and purchase receipt to verify your subscription.</li>
-          <li><strong>Firebase:</strong> Our backend uses Firebase to store and process game data. Firebase may log generic device information (such as operating system and version) necessary for service performance and security.</li>
-          <li><strong>Cloudflare Pages:</strong> Our marketing site and privacy policy are hosted on Cloudflare Pages. Cloudflare automatically collects logs and analytics for security and reliability purposes.</li>
+          <li>Fetch and display your match history and stats.</li>
+          <li>Remember your selected player/profile in the app.</li>
+          <li>Confirm and manage Pro subscription access.</li>
+          <li>Keep the service reliable and secure.</li>
         </ul>
-        <p>Each third-party provider has its own privacy policy, and we only share the minimum information necessary for them to perform their services.</p>
 
-        <h3>4. Data Retention</h3>
-        <p>We retain your in-game name and account ID for as long as you maintain an account with Stats Tracker. Anonymous install identifiers are retained only as long as necessary to manage subscriptions and generate aggregated analytics. If you request deletion of your data or uninstall the App, we will remove your information from our systems within a reasonable period, except where we are legally required to keep it.</p>
-
-        <h3>5. Your Rights</h3>
-        <p>If you are located in the European Union or other jurisdictions with data protection laws, you may have certain rights regarding your personal data, including the right to:</p>
+        <h3>Third-party services</h3>
+        <p>
+          To run the app and website, we use a few providers. They only receive the minimum data needed to do their job.
+        </p>
         <ul>
-          <li>Access the information we hold about you.</li>
-          <li>Request correction of inaccurate or incomplete data.</li>
-          <li>Request deletion of your data.</li>
-          <li>Object to or restrict the processing of your data.</li>
-          <li>Data portability, where applicable.</li>
+          <li><strong>PUBG API</strong>: used to retrieve your stats using your PUBG account ID.</li>
+          <li><strong>Apple In-App Purchase</strong>: handles payments. We never see your payment details.</li>
+          <li><strong>RevenueCat</strong>: helps validate subscription status (using an anonymous identifier and purchase receipt).</li>
+          <li><strong>Firebase</strong>: used for backend functionality and data delivery.</li>
+          <li><strong>Cloudflare Pages</strong>: hosts this website (may log standard request data for security/reliability).</li>
         </ul>
-        <p>To exercise any of these rights, please contact us at <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>. We may ask you to verify your identity before complying with your request. You also have the right to lodge a complaint with your local data protection authority.</p>
 
-        <h3>6. Security</h3>
-        <p>We implement reasonable administrative, technical and physical safeguards designed to protect your data. However, no method of transmission over the Internet or electronic storage is 100% secure. We cannot guarantee absolute security, but we endeavour to protect your information to the best of our ability.</p>
+        <h3>Data retention</h3>
+        <p>
+          We keep your PUBG identifiers and install ID for as long as needed to provide the service. If you remove the app, your install ID stops being used by the app.
+          If you want your stored data removed, contact us.
+        </p>
 
-        <h3>7. Children’s Privacy</h3>
-        <p>The App is not intended for children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe a child under 13 has provided us with personal information, please contact us and we will take steps to delete such information as soon as possible.</p>
+        <h3>Your choices</h3>
+        <ul>
+          <li>You can stop using the app at any time by uninstalling it.</li>
+          <li>You can request deletion of stored data by emailing us.</li>
+        </ul>
 
-        <h3>8. Changes to This Policy</h3>
-        <p>We may update this Privacy Policy from time to time to reflect changes in the law, our data practices or the App’s functionality. When we make material changes, we will notify you by updating the “Last updated” date at the top of this page and, if appropriate, via a notice within the App. Your continued use of the App after the effective date of an updated policy constitutes acceptance of the changes.</p>
-
-        <h3>9. Contact Us</h3>
-        <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>.</p>
+        <h3>Contact</h3>
+        <p>
+          Questions or deletion requests: <a href="mailto:support@pubgstats.app">support@pubgstats.app</a>
+        </p>
       </div>
     </div>
 
     <footer>
-      <p>&copy; 2025 Stats Tracker for PUBG. <a href="index.html">Back to Home</a></p>
+      <p>&copy; 2026 Stats Tracker for PUBG. <a href="index.html">Back to Home</a></p>
     </footer>
   </div>
 </body>
