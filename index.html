@@ -1,210 +1,788 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stats Tracker for PUBG – The #1 Stats Tracker</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- Use Inter for a clean, modern typeface -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>PUBG Stats Tracker — Match Replays, Ranked, Mastery</title>
+  <meta name="description" content="Track lifetime & ranked stats, match history, 2D replays, weapon mastery and friends — built for PUBG players." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="PUBG Stats Tracker" />
+  <meta property="og:description" content="Lifetime & ranked stats, match history, 2D replays, mastery and friends — built for PUBG players." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/screenshots/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20Max%20-%202026-01-08%20at%2020.46.20.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
-    /* Colour palette for the dark, orange and purple theme */
-    :root {
-      --color-bg: #0d0d0d;
-      --color-primary: #e3982b; /* orange accent */
-      --color-secondary: #8654a8; /* purple accent */
-      --color-text: #f5f5f5;
-      --color-muted: #999;
+    :root{
+      --bg: #070707;
+      --panel: rgba(255,255,255,0.06);
+      --panel2: rgba(255,255,255,0.09);
+      --text: rgba(255,255,255,0.90);
+      --muted: rgba(255,255,255,0.66);
+      --line: rgba(255,255,255,0.10);
+      --accent: #F6A11A;
+      --accent2: #ffb43a;
+      --shadow: 0 20px 80px rgba(0,0,0,0.6);
+      --radius: 18px;
+      --radius2: 26px;
+      --max: 1120px;
+      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: var(--color-bg);
-      color: var(--color-text);
-      line-height: 1.6;
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font-family: var(--font);
+      background:
+        radial-gradient(1200px 700px at 50% -150px, rgba(246,161,26,0.22), transparent 60%),
+        radial-gradient(800px 500px at 85% 20%, rgba(246,161,26,0.14), transparent 60%),
+        radial-gradient(800px 500px at 15% 40%, rgba(255,255,255,0.07), transparent 60%),
+        var(--bg);
+      color: var(--text);
+      overflow-x:hidden;
     }
 
-    a {
-      color: var(--color-primary);
-      text-decoration: none;
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 28px 18px 64px; }
+
+    /* Top bar */
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 0 18px;
     }
-    a:hover {
-      text-decoration: underline;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 38px; height: 38px;
+      border-radius: 12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,0.45), transparent 60%),
+        linear-gradient(160deg, rgba(246,161,26,0.95), rgba(246,161,26,0.45));
+      box-shadow: 0 10px 30px rgba(246,161,26,0.18);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+    .brand h1{
+      margin:0;
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      color: rgba(255,255,255,0.85);
+    }
+    .brand p{
+      margin:0;
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.9);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      gap: 8px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select:none;
+      cursor:pointer;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.18); }
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(246,161,26,0.95), rgba(246,161,26,0.62));
+      border-color: rgba(255,255,255,0.18);
+      color: #111;
+      font-weight: 700;
+    }
+    .btn.primary:hover{ background: linear-gradient(180deg, rgba(255,180,58,0.98), rgba(246,161,26,0.68)); }
+
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 10px;
+    }
+    @media (max-width: 920px){
+      .hero{ grid-template-columns: 1fr; }
     }
 
-    /* Header styles */
-    header {
-      display: flex;
-      align-items: center;
+    .card{
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .hero-left{
+      padding: 26px 22px;
+      position:relative;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      color: rgba(255,255,255,0.78);
+      letter-spacing: 0.20em;
+      text-transform: uppercase;
+      font-size: 12px;
+      font-family: var(--mono);
+    }
+    .kicker .dot{
+      width: 8px; height: 8px; border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(246,161,26,0.12);
+    }
+    .hero-left h2{
+      margin: 12px 0 10px;
+      font-size: clamp(26px, 4vw, 42px);
+      line-height: 1.08;
+      letter-spacing: 0.02em;
+    }
+    .hero-left h2 span{
+      color: var(--accent2);
+      text-shadow: 0 20px 80px rgba(246,161,26,0.18);
+    }
+    .hero-left p{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.55;
+      max-width: 62ch;
+    }
+    .hero-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+    .chips{
+      display:flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .chip{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(0,0,0,0.24);
+      color: rgba(255,255,255,0.78);
+      font-size: 12px;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+    }
+
+    .hero-right{
+      display:flex;
+      flex-direction: column;
       justify-content: space-between;
-      padding: 2rem 1rem;
-      max-width: 1100px;
-      margin: 0 auto;
+      padding: 18px;
     }
-    header img {
-      width: 80px;
-      height: auto;
+    .stat{
+      border-radius: var(--radius);
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 16px 14px;
+      margin-bottom: 12px;
     }
-    nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      gap: 1.5rem;
+    .stat:last-child{ margin-bottom: 0; }
+    .stat .label{
+      color: rgba(255,255,255,0.68);
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: var(--mono);
     }
-    nav li {
-      margin: 0;
+    .stat .value{
+      margin-top: 10px;
+      font-size: 18px;
+      color: rgba(255,255,255,0.92);
+      line-height: 1.3;
     }
-
-    /* Hero section */
-    .hero {
-      text-align: center;
-      padding: 3rem 1rem;
-      background: linear-gradient(135deg, var(--color-bg), #151515);
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-top: 0;
-      color: var(--color-primary);
-    }
-    .hero p {
-      max-width: 700px;
-      margin: 1rem auto 2rem;
-    }
-    .hero .cta {
-      display: inline-block;
-      background-color: var(--color-secondary);
-      color: var(--color-text);
-      padding: 0.8rem 1.5rem;
-      border-radius: 6px;
-      font-weight: 600;
-      transition: background-color 0.2s ease;
-    }
-    .hero .cta:hover {
-      background-color: #9f6fc3;
+    .tiny{
+      margin-top: 8px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.45;
     }
 
-    /* Features section */
-    .features {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 3rem 1rem;
+    /* Sections */
+    section{
+      margin-top: 22px;
+      padding: 20px;
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
     }
-    .features h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      font-size: 2rem;
-      color: var(--color-primary);
+    section h3{
+      margin: 0 0 10px;
+      font-size: 14px;
+      font-family: var(--mono);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.84);
     }
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
+    section p{
+      margin: 0 0 16px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-size: 14px;
     }
-    .feature-item {
-      background-color: #1a1a1a;
-      border-radius: 8px;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+
+    /* Features grid */
+    .features{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
     }
-    .feature-item img {
+    @media (max-width: 920px){
+      .features{ grid-template-columns: 1fr; }
+    }
+    .feature{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.20);
+      padding: 14px 14px 16px;
+    }
+    .feature .t{
+      display:flex; align-items:center; justify-content:space-between; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .feature .t strong{
+      font-size: 13px;
+      letter-spacing: 0.10em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      color: rgba(255,255,255,0.9);
+    }
+    .pill{
+      font-size: 11px;
+      padding: 6px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(246,161,26,0.35);
+      background: rgba(246,161,26,0.12);
+      color: rgba(255,212,155,0.95);
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .feature ul{
+      margin: 0;
+      padding: 0 0 0 16px;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.6;
+      font-size: 13px;
+    }
+
+    /* Gallery */
+    .gallery-head{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .gallery-actions{
+      display:flex; gap: 10px; flex-wrap: wrap;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 1100px){ .grid{ grid-template-columns: repeat(4, 1fr);} }
+    @media (max-width: 920px){ .grid{ grid-template-columns: repeat(3, 1fr);} }
+    @media (max-width: 640px){ .grid{ grid-template-columns: repeat(2, 1fr);} }
+
+    figure.shot{
+      margin:0;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(0,0,0,0.20);
+      overflow:hidden;
+      cursor:pointer;
+      transition: transform .12s ease, border-color .12s ease, background .12s ease;
+      position:relative;
+    }
+    figure.shot:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,255,255,0.18);
+      background: rgba(0,0,0,0.26);
+    }
+    figure.shot img{
+      display:block;
+      width:100%;
+      height:auto;
+      aspect-ratio: 9 / 19.5;
+      object-fit: cover;
+    }
+    figure.shot figcaption{
+      position:absolute;
+      left: 10px; right: 10px; bottom: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: rgba(0,0,0,0.58);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.86);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: var(--mono);
+      backdrop-filter: blur(8px);
+    }
+
+    /* Lightbox */
+    .lightbox{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index: 999;
+      padding: 18px;
+    }
+    .lightbox[aria-hidden="false"]{ display:flex; }
+    .lb-inner{
+      width: min(1100px, 100%);
+      height: min(92vh, 900px);
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      gap: 10px;
+    }
+    .lb-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+    }
+    .lb-title{
+      color: rgba(255,255,255,0.9);
+      font-family: var(--mono);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+    .lb-stage{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(0,0,0,0.35);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+      touch-action: pan-y;
+    }
+    .lb-stage img{
+      max-height: 100%;
       max-width: 100%;
-      border-radius: 4px;
-      margin-bottom: 1rem;
+      width: auto;
+      height: 100%;
+      object-fit: contain;
+      display:block;
     }
-    .feature-item h3 {
-      color: var(--color-secondary);
-      margin-bottom: 0.5rem;
-      font-size: 1.3rem;
+    .lb-bottom{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .kbd{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: rgba(255,255,255,0.62);
+    }
+    .lb-controls{ display:flex; gap: 10px; }
+    .icon{
+      width: 14px; height: 14px;
+      display:inline-block;
+      border: 2px solid currentColor;
+      border-left: 0; border-bottom: 0;
+      transform: rotate(45deg);
+      margin-left: 2px;
+    }
+    .icon.left{ transform: rotate(-135deg); margin-left: 0; margin-right: 2px; }
+    .close-x{
+      font-family: var(--mono);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-size: 12px;
     }
 
-    /* Pro / why section */
-    .pro-section {
-      background-color: #141414;
-      padding: 3rem 1rem;
-      text-align: center;
+    footer{
+      margin-top: 18px;
+      padding: 16px 6px 6px;
+      color: rgba(255,255,255,0.52);
+      font-size: 12px;
+      line-height: 1.5;
+      text-align:center;
     }
-    .pro-section h2 {
-      color: var(--color-primary);
-      margin-bottom: 1rem;
-      font-size: 2rem;
+    .footer-links{
+      display:flex;
+      gap: 10px;
+      justify-content:center;
+      flex-wrap: wrap;
+      margin-top: 8px;
     }
-    .pro-section p {
-      max-width: 700px;
-      margin: 0 auto 2rem;
-    }
-
-    /* Footer styles */
-    footer {
-      background-color: #0a0a0a;
-      padding: 1.5rem 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: var(--color-muted);
-    }
-    footer a {
-      color: var(--color-secondary);
+    .footer-links a{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
     }
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="logo">
-      <!-- The app icon serves as a brand anchor in the header -->
-      <img src="assets/icon.png" alt="Stats Tracker Logo">
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>PUBG Stats Tracker</h1>
+          <p>Match history • 2D replays • Ranked • Mastery</p>
+        </div>
+      </div>
+
+      <nav>
+        <!-- Replace these with your real URLs -->
+        <a class="btn primary" href="#" rel="noopener">Download</a>
+        <a class="btn" href="#screenshots">Screenshots</a>
+        <a class="btn" href="#features">Features</a>
+        <a class="btn" href="#support">Support</a>
+      </nav>
+    </header>
+
+    <div class="hero">
+      <div class="card hero-left">
+        <div class="kicker"><span class="dot"></span> Built for PUBG players</div>
+        <h2>Everything you need to <span>track & improve</span>.</h2>
+        <p>
+          See lifetime and ranked performance, review recent matches, explore advanced combat details,
+          and replay games with a clean 2D timeline.
+        </p>
+
+        <div class="hero-actions">
+          <!-- Replace with your real App Store link -->
+          <a class="btn primary" href="#" rel="noopener">Get the app</a>
+          <a class="btn" href="#screenshots">View screenshots <span class="icon"></span></a>
+        </div>
+
+        <div class="chips" aria-label="Highlights">
+          <div class="chip">2D Replay</div>
+          <div class="chip">Match Timeline</div>
+          <div class="chip">Kill & Damage Logs</div>
+          <div class="chip">Friends Compare</div>
+          <div class="chip">Weapon Mastery</div>
+          <div class="chip">Ranked + Casual</div>
+        </div>
+      </div>
+
+      <div class="card hero-right">
+        <div class="stat">
+          <div class="label">What it does</div>
+          <div class="value">Fast stats, clean UI, deep match breakdowns.</div>
+          <div class="tiny">Made for players who want detail without the clutter.</div>
+        </div>
+        <div class="stat">
+          <div class="label">Screenshots</div>
+          <div class="value">Tap any image below to open a full-size preview.</div>
+          <div class="tiny">Use arrow keys (desktop) or swipe (mobile).</div>
+        </div>
+        <div class="stat" id="support">
+          <div class="label">Support</div>
+          <div class="value">Need help or have ideas?</div>
+          <div class="tiny">
+            Add your support email / Discord / X link in the footer buttons.
+          </div>
+        </div>
+      </div>
     </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <section class="hero">
-    <h1>Stats&nbsp;Tracker&nbsp;for&nbsp;PUBG</h1>
-    <p>The #1 Stats Tracker for PUBG PC &amp; Console. Dive deep into your performance with detailed stats, immersive 2D replays, combat logs, mastery insights, match histories and more.</p>
-    <!-- Primary call to action takes visitors directly to the App Store listing -->
-    <a href="https://apps.apple.com/gb/app/stats-tracker-for-pubg/id1397103813" class="cta">Download on the App Store</a>
-  </section>
+    <section id="features">
+      <h3>Features</h3>
+      <p>
+        A focused stats tracker with the details you actually care about — from ranked progress to match-by-match breakdowns.
+      </p>
 
-  <section class="features">
-    <h2>Key Features</h2>
-    <div class="feature-grid">
-      <div class="feature-item">
-        <img src="assets/matches.jpeg" alt="Recent matches screen">
-        <h3>Career &amp; Match Stats</h3>
-        <p>Access detailed statistics for every match and season: wins, K/D ratio, damage, time survived, map breakdowns and more.</p>
+      <div class="features">
+        <div class="feature">
+          <div class="t">
+            <strong>Profiles</strong>
+            <span class="pill">Lifetime & Ranked</span>
+          </div>
+          <ul>
+            <li>Lifetime overview + ranked stats</li>
+            <li>Clean, readable cards</li>
+            <li>Key performance metrics at a glance</li>
+          </ul>
+        </div>
+
+        <div class="feature">
+          <div class="t">
+            <strong>Matches</strong>
+            <span class="pill">Replay-friendly</span>
+          </div>
+          <ul>
+            <li>Recent matches + session summary</li>
+            <li>Detailed kill/damage logs</li>
+            <li>Advanced match insights</li>
+          </ul>
+        </div>
+
+        <div class="feature">
+          <div class="t">
+            <strong>Mastery</strong>
+            <span class="pill">Weapons</span>
+          </div>
+          <ul>
+            <li>Weapon progression & stats</li>
+            <li>Damage + farthest kill tracking</li>
+            <li>Filters by category</li>
+          </ul>
+        </div>
       </div>
-      <div class="feature-item">
-        <img src="assets/kills.jpeg" alt="Kills and damage screen">
-        <h3>Kills &amp; Damage Analysis</h3>
-        <p>Visualise your kills, damage and survival over time with clear charts and damage logs. Compare yourself to squad mates and rivals.</p>
+    </section>
+
+    <section id="screenshots">
+      <div class="gallery-head">
+        <div>
+          <h3>Screenshots</h3>
+          <p>Click/tap to open. Add more screenshots by updating the list in <code>screens</code> in this file.</p>
+        </div>
+        <div class="gallery-actions">
+          <button class="btn" id="openFirst" type="button">Open gallery</button>
+        </div>
       </div>
-      <div class="feature-item">
-        <img src="assets/map.jpeg" alt="Advanced map replay screen">
-        <h3>2D Replays &amp; Map Path</h3>
-        <p>Replay every game in a tactical 2D map. See your path, kills, loot drops and discover where you can improve your strategy.</p>
+
+      <div class="grid" id="grid" aria-label="Screenshot gallery"></div>
+    </section>
+
+    <footer>
+      <div>Not affiliated with PUBG / KRAFTON. “PUBG” is a registered trademark of its respective owners.</div>
+      <div class="footer-links">
+        <!-- Replace with real links -->
+        <a href="#" rel="noopener">App Store</a>
+        <a href="#" rel="noopener">Support</a>
+        <a href="#" rel="noopener">Privacy</a>
       </div>
-      <div class="feature-item">
-        <img src="assets/proplus.jpeg" alt="Pro plus features screen">
-        <h3>Pro Subscription</h3>
-        <p>Unlock advanced match search, live loot timeline sync, pinch‑to‑zoom replays, colour‑coded teams and a Pro badge with our optional subscription.</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" aria-label="Image viewer" role="dialog">
+    <div class="lb-inner" role="document">
+      <div class="lb-top">
+        <div class="lb-title" id="lbTitle">Screenshot</div>
+        <button class="btn" id="lbClose" type="button"><span class="close-x">Close</span></button>
+      </div>
+
+      <div class="lb-stage" id="lbStage">
+        <img id="lbImg" alt="" />
+      </div>
+
+      <div class="lb-bottom">
+        <div class="kbd">Keys: ← → to navigate • Esc to close</div>
+        <div class="lb-controls">
+          <button class="btn" id="lbPrev" type="button"><span class="icon left"></span> Prev</button>
+          <button class="btn primary" id="lbNext" type="button">Next <span class="icon"></span></button>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section class="pro-section">
-    <h2>Why Stats&nbsp;Tracker?</h2>
-    <p>Whether you’re an Esports competitor, a ranked grinder or a casual duo, Stats&nbsp;Tracker gives you the insights you need to climb the leaderboard. Track your progress, understand your strengths and weaknesses, and share your achievements with friends.</p>
-    <a href="https://apps.apple.com/gb/app/stats-tracker-for-pubg/id1397103813" class="cta">Get&nbsp;Started&nbsp;Now</a>
-  </section>
+  <script>
+    // Screenshot list
+    // Put files in: /assets/screenshots/
+    // If you keep them directly in /assets/, change basePath below to "assets/".
+    const basePath = "assets/screenshots/";
 
-  <footer>
-    <p>&copy; 2025 Stats Tracker for PUBG. All rights reserved. <a href="privacy.html">Privacy Policy</a></p>
-  </footer>
+    const screens = [
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 20.46.20.png",
+        title: "Profile • Lifetime overview"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.09.57.png",
+        title: "Game Modes • Ranked & lifetime"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.10.05.png",
+        title: "Mastery • Weapon stats"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.09.46.png",
+        title: "Matches • Recent session"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.10.20.png",
+        title: "Match • Squad summary"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.12.32.png",
+        title: "2D Replay • Map & timeline"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.10.27.png",
+        title: "Advanced • Match insights"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.11.07.png",
+        title: "Advanced • Loadouts & accuracy"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.20.55.png",
+        title: "Kill Log • Damage breakdown"
+      },
+      {
+        file: "Simulator Screenshot - iPhone 17 Pro Max - 2026-01-08 at 22.16.53.png",
+        title: "Friends • Compare stats"
+      }
+    ];
+
+    const grid = document.getElementById("grid");
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lbImg");
+    const lbTitle = document.getElementById("lbTitle");
+    const lbClose = document.getElementById("lbClose");
+    const lbPrev = document.getElementById("lbPrev");
+    const lbNext = document.getElementById("lbNext");
+    const openFirst = document.getElementById("openFirst");
+    const stage = document.getElementById("lbStage");
+
+    let index = 0;
+    let startX = null;
+
+    function srcFor(i){
+      // encodeURIComponent handles spaces and punctuation safely
+      return basePath + encodeURIComponent(screens[i].file);
+    }
+
+    function renderGrid(){
+      grid.innerHTML = "";
+      screens.forEach((s, i) => {
+        const fig = document.createElement("figure");
+        fig.className = "shot";
+        fig.tabIndex = 0;
+        fig.setAttribute("role", "button");
+        fig.setAttribute("aria-label", `Open screenshot: ${s.title}`);
+
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.src = srcFor(i);
+        img.alt = s.title;
+
+        const cap = document.createElement("figcaption");
+        cap.textContent = s.title;
+
+        fig.appendChild(img);
+        fig.appendChild(cap);
+
+        fig.addEventListener("click", () => open(i));
+        fig.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            open(i);
+          }
+        });
+
+        grid.appendChild(fig);
+      });
+    }
+
+    function open(i){
+      index = i;
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+      update();
+    }
+
+    function close(){
+      lb.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    function update(){
+      lbImg.src = srcFor(index);
+      lbImg.alt = screens[index].title;
+      lbTitle.textContent = `${screens[index].title} (${index + 1}/${screens.length})`;
+    }
+
+    function prev(){
+      index = (index - 1 + screens.length) % screens.length;
+      update();
+    }
+
+    function next(){
+      index = (index + 1) % screens.length;
+      update();
+    }
+
+    // Controls
+    lbClose.addEventListener("click", close);
+    lbPrev.addEventListener("click", prev);
+    lbNext.addEventListener("click", next);
+    openFirst.addEventListener("click", () => open(0));
+
+    // Click outside image closes
+    lb.addEventListener("click", (e) => {
+      if (e.target === lb) close();
+    });
+
+    // Keyboard
+    window.addEventListener("keydown", (e) => {
+      if (lb.getAttribute("aria-hidden") === "true") return;
+      if (e.key === "Escape") close();
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    });
+
+    // Basic swipe on mobile
+    stage.addEventListener("touchstart", (e) => {
+      if (!e.touches || e.touches.length !== 1) return;
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    stage.addEventListener("touchend", (e) => {
+      if (startX === null) return;
+      const endX = (e.changedTouches && e.changedTouches[0]) ? e.changedTouches[0].clientX : startX;
+      const dx = endX - startX;
+      startX = null;
+
+      if (Math.abs(dx) < 40) return;
+      if (dx > 0) prev(); else next();
+    }, { passive: true });
+
+    renderGrid();
+  </script>
 </body>
 </html>
